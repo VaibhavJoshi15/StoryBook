@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "457914019118",
+    "project_id": "storybook-9f21e",
+    "storage_bucket": "storybook-9f21e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:457914019118:android:673bbbe44bb6a98b8edebf",
+        "android_client_info": {
+          "package_name": "com.storybook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "457914019118-tjea98mkl3e1aqkm7u08q9arc83519oh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_XHaekQ4Jb57ZHkfL4fi4a27f2-W0T2c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "457914019118-tjea98mkl3e1aqkm7u08q9arc83519oh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "457914019118-pj2pbl3igas98dtpsknqqtpju8cm6qrn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.StoryBook"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
