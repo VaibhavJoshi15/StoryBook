@@ -2,10 +2,19 @@ import React from 'react';
 import {TextInput, View, StyleSheet, Text} from 'react-native';
 import {dpi, myWidth} from '../utils/reponsiveUtils';
 import colors from '../utils/theme/colors';
+import fontList from '../utils/theme/fontList';
 
-const CommonInput = ({value, placeholder, onChange, error}) => {
+const CommonInput = ({value, placeholder, onChange, error, heading}) => {
   return (
     <View style={styles.viewStyle}>
+      <Text
+        style={{
+          color: colors.Black,
+          fontFamily: fontList.BOLD,
+          marginTop: 2 * dpi,
+        }}>
+        {heading}
+      </Text>
       <TextInput
         style={styles.input}
         onChangeText={text => {
@@ -17,18 +26,22 @@ const CommonInput = ({value, placeholder, onChange, error}) => {
         placeholder={placeholder}
         placeholderTextColor={colors.PlaceHolderColor}
       />
-      {error && <Text style={styles.errorStyle}>{error}</Text>}
+      {error ? (
+        <Text style={styles.errorStyle}>{error}</Text>
+      ) : (
+        <Text style={styles.errorStyle}>{''}</Text>
+      )}
     </View>
   );
 };
 const styles = StyleSheet.create({
   input: {
     height: 18 * dpi,
-    marginTop: 10 * dpi,
-    borderWidth: 1,
+    marginTop: 1 * dpi,
+    //borderWidth: 2,
     borderColor: colors.PrimaryColor,
     backgroundColor: colors.InputBackground,
-    borderRadius: 5 * dpi,
+    borderRadius: 3 * dpi,
     paddingHorizontal: 10,
     width: 0.9 * myWidth,
   },

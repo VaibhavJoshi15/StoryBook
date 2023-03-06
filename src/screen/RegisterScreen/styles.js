@@ -5,14 +5,16 @@ import fontList from '../../utils/theme/fontList';
 
 export const styles = StyleSheet.create({
   viewStyle: {
-    marginHorizontal: myWidth / 15,
+    flex: 1,
+    //marginHorizontal: myWidth / 15,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: colors.PrimaryColor,
   },
   imageStyle: {
     height: myHeight * 0.15,
     width: myWidth * 0.3,
-    marginTop: myHeight * 0.05,
+    marginVertical: myHeight * 0.021,
   },
   textStyle: {
     color: colors.PrimaryColor,
@@ -27,6 +29,7 @@ export const styles = StyleSheet.create({
     fontFamily: fontList.EXTRABOLD,
     color: colors.Black,
     fontSize: 15,
+    paddingBottom: dpi * 10,
   },
   container: {flex: 1},
 });

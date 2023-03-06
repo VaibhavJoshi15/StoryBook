@@ -13,6 +13,6 @@ export const showSuccess = message => {
     message,
     type: 'success',
     icon: 'success',
-    color: '#964AA3',
+    backgroundColor: '#964AA3',
   });
 };

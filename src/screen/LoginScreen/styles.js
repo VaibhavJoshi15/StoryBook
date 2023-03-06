@@ -6,16 +6,17 @@ import fontList from '../../utils/theme/fontList';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: colors.PrimaryColor,
   },
   innerView: {
-    marginHorizontal: myWidth / 15,
+    // marginHorizontal: myWidth / 15,
     alignItems: 'center',
     justifyContent: 'center',
   },
   imageStyle: {
     height: myHeight * 0.2,
     width: myWidth * 0.5,
-    marginVertical: myHeight * 0.05,
+    marginVertical: myHeight * 0.125,
   },
   textStyle: {
     color: colors.PrimaryColor,
