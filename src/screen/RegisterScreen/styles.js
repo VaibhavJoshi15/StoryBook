@@ -12,9 +12,9 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.PrimaryColor,
   },
   imageStyle: {
-    height: myHeight * 0.15,
-    width: myWidth * 0.3,
-    marginVertical: myHeight * 0.021,
+    height: myHeight * 0.18,
+    width: myWidth * 0.35,
+    marginVertical: myHeight * 0.03,
   },
   textStyle: {
     color: colors.PrimaryColor,

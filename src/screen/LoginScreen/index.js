@@ -1,4 +1,11 @@
-import {View, Text, Image, Dimensions, Platform, Button} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  Dimensions,
+  KeyboardAvoidingView,
+  Button,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
@@ -8,14 +15,18 @@ import {showError, showSuccess} from '../../utils/helpers';
 import {styles} from './styles';
 import {ContentText, ErrorMessage, SuccessMessage} from '../../utils/constant';
 import {images} from '../../utils/images';
+import {userData} from '../../redux/reducers/authSlice';
 import auth from '@react-native-firebase/auth';
 import ReactNativeBiometrics, {BiometryTypes} from 'react-native-biometrics';
 import firestore from '@react-native-firebase/firestore';
 import SocialLogin from '../../components/SocialLogin';
-import KeyboardAvoidingView from 'react-native/Libraries/Components/Keyboard/KeyboardAvoidingView';
+import {useDispatch, useSelector} from 'react-redux';
 
 export default function LoginScreen({navigation}) {
   const [authState, setAuthState] = useState('');
+  const dispatch = useDispatch();
+  const {userInfo} = useSelector(state => state.auth);
+  console.log('user-------------', userInfo);
 
   useEffect(() => {
     const rnBiometrics = new ReactNativeBiometrics({
@@ -133,18 +144,27 @@ export default function LoginScreen({navigation}) {
         onSubmit={value => {
           auth()
             .signInWithEmailAndPassword(value.email, value.password)
-            .then(response => {
-              console.log('User account created & signed in!', response);
-              navigation.navigate('UserStack');
-              // firestore().collection('users').add({
-              //   UserInfo: response,
-              // });
-              firestore().collection('user').doc(auth().currentUser.uid).set({
-                UserInfo: response,
+            .then(async response => {
+              // console.log('Res', response.user);
+              // console.log('UserInfo', response?.user?._user);
+
+              const userId = auth().currentUser.uid;
+              console.log('USERID', userId);
+              const userCred = {
+                token: userId,
+                email: value.email,
+              };
+              dispatch(userData(userCred));
+              console.log('USERCRED', userCred);
+
+              await firestore().collection('user').doc(userId).set({
+                UserInfo: response?.user?._user,
               });
+              navigation.navigate('UserStack');
               showSuccess(SuccessMessage.LOGGEDIN_SUCCESSFULLY);
             })
             .catch(error => {
+              console.log('error', error);
               if (error.code === 'auth/email-already-in-use') {
                 showError(ErrorMessage.USER_ALREADY_EXIST);
               }

@@ -26,6 +26,13 @@
 	<true/>
 	<key>NSFaceIDUsageDescription</key>
 <string>$(PRODUCT_NAME) Authentication with TouchId or FaceID</string>
+<key>NSPhotoLibraryUsageDescription</key>
+
+    <string>$(PRODUCT_NAME) would like access to your photo gallery</string>
+
+    <key>NSCameraUsageDescription</key>
+
+    <string>$(PRODUCT_NAME) would like to use your camera</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>

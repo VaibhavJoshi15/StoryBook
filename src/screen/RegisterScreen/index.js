@@ -1,27 +1,26 @@
-import {
-  View,
-  Text,
-  Image,
-  Dimensions,
-  SafeAreaView,
-  KeyboardAvoidingView,
-  Keyboard,
-} from 'react-native';
+import {View, Text, Image, KeyboardAvoidingView} from 'react-native';
 import React from 'react';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import {Formik} from 'formik';
 import {RegisterSchema} from '../../utils/validation';
-import {showSuccess} from '../../utils/helpers';
+import {showError, showSuccess} from '../../utils/helpers';
 import {styles} from './styles';
-import {ContentText, SuccessMessage} from '../../utils/constant';
+import {userData} from '../../redux/reducers/authSlice';
+import {ContentText, ErrorMessage, SuccessMessage} from '../../utils/constant';
 import {images} from '../../utils/images';
+import firestore from '@react-native-firebase/firestore';
+
 import auth from '@react-native-firebase/auth';
 import SocialLogin from '../../components/SocialLogin';
+import {useDispatch} from 'react-redux';
 
 export default function RegisterScreen({navigation}) {
+  const dispatch = useDispatch();
   return (
-    <KeyboardAvoidingView style={styles.container}>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <Formik
         initialValues={{
           email: '',
@@ -33,11 +32,21 @@ export default function RegisterScreen({navigation}) {
         onSubmit={value => {
           auth()
             .createUserWithEmailAndPassword(value.email, value.password)
-            .then(() => {
+            .then(async response => {
               console.log('User account created & signed in!');
+              const userId = auth().currentUser.uid;
+              const userCred = {
+                token: userId,
+                email: value.email,
+              };
+              dispatch(userData(userCred));
+              await firestore().collection('user').doc(userId).set({
+                UserInfo: response?.user?._user,
+              });
               navigation.navigate('UserStack');
               showSuccess(SuccessMessage.LOGGEDIN_SUCCESSFULLY);
             })
+
             .catch(error => {
               if (error.code === 'auth/email-already-in-use') {
                 showError(ErrorMessage.USER_ALREADY_EXIST);

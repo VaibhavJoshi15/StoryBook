@@ -11,7 +11,7 @@ const CommonInput = ({value, placeholder, onChange, error, heading}) => {
         style={{
           color: colors.Black,
           fontFamily: fontList.BOLD,
-          marginTop: 2 * dpi,
+          marginTop: 4 * dpi,
         }}>
         {heading}
       </Text>
@@ -38,6 +38,8 @@ const styles = StyleSheet.create({
   input: {
     height: 18 * dpi,
     marginTop: 1 * dpi,
+    color: colors.Black,
+    fontFamily: fontList.SEMIBOLD,
     //borderWidth: 2,
     borderColor: colors.PrimaryColor,
     backgroundColor: colors.InputBackground,

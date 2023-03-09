@@ -10,9 +10,24 @@ const MyTabs = () => {
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
-        headerShown: false,
+        headerTitleAlign: 'center',
+        headerStyle: {
+          backgroundColor: colors.PrimaryColor,
+        },
         tabBarStyle: {
           backgroundColor: colors.PrimaryColor,
+        },
+        tabBarIconStyle: {
+          color: colors.White,
+        },
+        tabBarLabelStyle: {
+          color: colors.White,
+        },
+        tabBarActiveTintColor: colors.LightGray,
+
+        headerTitleStyle: {
+          color: colors.White,
+          fontWeight: 'bold',
         },
       })}>
       <Tab.Screen name="Home" component={HomeScreen} />

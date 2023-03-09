@@ -1,4 +1,5 @@
 import {showMessage} from 'react-native-flash-message';
+import colors from './theme/colors';
 
 export const showError = message => {
   showMessage({
@@ -13,6 +14,6 @@ export const showSuccess = message => {
     message,
     type: 'success',
     icon: 'success',
-    backgroundColor: '#964AA3',
+    backgroundColor: colors.PrimaryColor,
   });
 };
